@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubtNLearn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(66, 63, 63); 
+            color: white;
+        }
+
+        header {
+            background-color: rgb(3, 3, 3);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #be6525;
+        }
+
+        /* Header navigation buttons */
+        .nav-button {
+            background-color: transparent;
+            color: #be6525;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            color: #ffffff; /* Change color on hover */
+        }
+
+        .login-button {
+            background-color: #333333; /* Dark button background */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; /* Add cursor pointer */
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #444444; /* Lighter shade on hover */
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #030303;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px; /* Set a width */
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Main section */
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+        }
+
+        /* Content slider container */
+        .slider {
+            position: relative;
+            width: 100vw;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-top: -150px;
+            padding: 0px;
+        }
+
+        /* Slider inner content */
+        .slides {
+            display: flex;
+            width: 500%;
+            height: 100%;
+            animation: slide 15s cubic-bezier(0.25, 1, 0.5, 1) infinite; /* Smooth animation */
+        }
+
+        .slide {
+            width: 20%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: #fff;
+        }
+
+        /* Styling for each slide */
+        .slide:nth-child(1) { background-color: #0044cc;}
+        .slide:nth-child(2) { background-color: #ff5722; }
+        .slide:nth-child(3) { background-color: #8bc34a; }
+        .slide:nth-child(4) { background-color: #673ab7; }
+        .slide:nth-child(5) { background-color: #009688; }
+
+        /* Slide animation */
+        @keyframes slide {
+            0% { margin-left: 0%; }
+            20% { margin-left: 0%; }
+            25% { margin-left: -100%; }
+            45% { margin-left: -100%; }
+            50% { margin-left: -200%; }
+            70% { margin-left: -200%; }
+            75% { margin-left: -300%; }
+            95% { margin-left: -300%; }
+            100% { margin-left: -400%; }
+        }
+
+        /* Button styles for login options */
+        .login-option {
+            background-color: #bc591c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer; /* Add cursor pointer */
+            transition: background-color 0.3s ease;
+            width: 100%; /* Full width */
+        }
+
+        .login-option:hover {
+            background-color: #000000; /* Lighter shade on hover */
+        }
+        .features-odd{
+            width: 100vw;
+            max-width: 3148px;
+            height: 400px;
+            overflow: hidden;
+            margin-top: -150px;
+            padding: 0px;
+            padding-left: 20px;
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            align-items: center;
+            margin-bottom: 155px;
+            background-color: black;
+            
+        }
+
+        .features h2{
+            color: rgb(255, 255, 254);
+            
+        }
+        .features p{
+            color: #bc591c;
+        }
+        .feature-content-odd-left{
+            width: 45vw;
+            
+            
+            
+        }
+        .feature-content-odd-right{
+            width: 45vw;
+            display: flex;
+            justify-content: center;
+            
+        }
+        .feature-content-even-left{
+            width: 45vw;
+            display: flex;
+            justify-content: center;
+            
+            
+            
+        }
+        .feature-content-even-right{
+            width: 45vw;
+            
+            
+        }
+        
+        .features-even{
+            width: 100vw;
+            height: 400px;
+            overflow: hidden;
+            margin-top: -150px;
+            padding: 0px;
+            background-color: black;
+            padding-left: 20px;
+            padding-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-self: center;
+            align-items: center;
+            margin-bottom: 155px;
+
+        }
+
+        .three-card{
+            width: 100vw;
+            height: 300px;
+            overflow: hidden;
+            margin-top: -150px;
+            padding: 0px;
+            background-color: black;
+            padding-left: 20px;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 155px;
+
+        }
+
+        .three-card p{
+            color: #bc591c;
+        }
+        .card{
+            width: 33vw;
+            height: 350px;
+            overflow: hidden;
+            margin: 10px;
+            padding: 10px;
+        }
+        .card{
+            width: 33vw;
+            height: 350px;
+            overflow: hidden;
+            margin: 10px;
+            padding: 10px;
+        }
+        .card{
+            width: 33vw;
+            height: 350px;
+            overflow: hidden;
+            margin: 10px;
+            padding: 10px;
+        }
+
+
+.button {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #b4591c;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 20%;
+  will-change: transform;
+  margin-top: 10px;
+  
+}
+
+.button:disabled {
+  pointer-events: none;
+}
+
+.button:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+footer{
+    background-color: rgb(3, 3, 3); 
+    color: white; 
+    padding: 15px; 
+    text-align: center;
+}
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">DoubtNLearn</div>
+        <div>
+            <button class="nav-button" id="roadmapBtn">Roadmap</button>
+            <button class="nav-button" id="roadmapBtn">Ask a Doubt</button>
+            <button class="nav-button" id="roadmapBtn">Book a Session</button>
+        </div>
+        <button class="login-button" id="loginBtn">Login</button>
+    </header>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Login as:</h2>
+            <button class="login-option">User</button>
+            <button class="login-option">Mentor</button>
+            <button class="login-option">Panelist</button>
+        </div>
+    </div>
+
+    <main>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">Welcome to DoubtNLearn</div>
+                <div class="slide">Empower Your Learning</div>
+                <div class="slide">Connect with Mentors</div>
+                <div class="slide">Get Expert Guidance</div>
+                <div class="slide">Get Your Doubt Resolved</div>
+            </div>
+            
+        </div>
+    </main>
+    <div class="features-odd features">
+        <div class="feature-content-odd-left">
+        <h2>RoadMap Feature</h2>
+        <p>The Roadmap Section on our website offers curated learning tracks for various tech stacks, including Front-end, Back-end, Full Stack, Data Science, and more. Each track features a structured curriculum, recommended resources, and practical projects tailored for different skill levels. Additionally, learners can access video tutorials and participate in live sessions for real-time interaction with instructors. This section fosters a community for discussion and collaboration, empowering users to navigate their tech journey effectively.</p>
+        <a href="https://www.example.com" target="_blank">
+            <button class="button" role="button">Roadmaps</button>
+          </a>
+        </div>
+        <div class="feature-content-odd-right">
+            <img src="images/mindmap.png" alt="" height="250px" width="400px">
+        </div>
+    </div>
+    <div class="features-even features">
+        <div class="feature-content-even-left">
+            <img src="images/doubt.png" alt="" height="250px" width="400px">
+        </div>
+        <div class="feature-content-even-right">
+            <h2>Resolve Doubt Feature</h2>
+            <p>The doubt resolution system combines AI for quick responses and human mentors for complex queries. It includes a Request Management System for easy doubt submission and promotes peer-to-peer mentorship, fostering a community-driven learning environment. This ensures timely and personalized support for learners.​</p>
+            <a href="https://www.example.com" target="_blank">
+                <button class="button" role="button">Ask a Doubt</button>
+              </a>
+        </div>
+    </div>
+    <div class="features-odd features">
+        <div class="feature-content-odd-left">
+        <h2>Mentor Interaction Feature</h2>
+        <p>User-to-mentor interaction on this platform is streamlined through secure logins and a Request Management System. Users can easily submit doubts, which are addressed by mentors either through AI-driven responses for simpler issues or personalized human guidance for complex queries. This system ensures efficient, real-time communication and support between users and mentors, enhancing the learning experience. </p>
+        <a href="https://www.example.com" target="_blank">
+            <button class="button" role="button">Book a Session</button>
+          </a>
+        </div>
+        <div class="feature-content-odd-right">
+            <img src="images/mentor.png" alt="" height="250px" width="400px">
+        </div>
+    </div>
+    <div class="three-card">
+        <div class="card">
+            <h2>Perk System</h2>
+            <p>The Perk System rewards mentors based on user reviews. After each session, students can rate mentors, and positive reviews translate into perks or rewards. This system motivates mentors to provide high-quality support, improving overall engagement and learning on the platform​. 
+                When a mentor reaches a certain number of perk units, their Mentor Level increases, boosting their profile and reputation on the platform as a trusted expert.</p>
+        </div>
+        <div class="card">
+            <h2>Income Source</h2>
+            <p>Skilled freshers or the teacher who want to educate students online too can earn on the platform by becoming mentors. As they assist students and receive positive reviews, they gain Perk Units, which strengthen their profile and increase earning opportunities. 
+                More the mentor level, more the cost per session.​</p>
+        </div>
+        <div class="card">
+            <h2>AI Support </h2>
+            <p>This project by Full Stack Force integrates AI for personalized, real-time doubt resolution through AI Mentorship. AI helps automate routine responses with chatbot integration, enhancing the user experience by providing fast query handling and personalized learning paths. This integration ensures efficient, timely support, improving overall learning outcomes. ​</p>
+        </div>
+
+    </div>
+    <footer>
+            <p>&copy; 2024 DoubtNLearn. All rights reserved.</p>
+            <button class="nav-button" id="footerAboutBtn">About Us</button>
+            <button class="nav-button" id="footerContactBtn">Contact Us</button>
+        </div>
+    </footer>
+    <script>
+        // Get modal element
+        var modal = document.getElementById("loginModal");
+        
+        // Get button that opens the modal
+        var btn = document.getElementById("loginBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModal");
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "flex"; // Show modal with flex
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Handle login option button clicks (You can add your login functionality here)
+        const loginOptions = document.querySelectorAll('.login-option');
+        loginOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Add functionality for each login option here
+                alert(`You selected: ${this.textContent}`);
+                modal.style.display = "none"; // Close modal after selection
+            });
+        });
+
+        // Handle header button clicks (You can add functionality here)
+        document.getElementById('aboutBtn').onclick = function() {
+            alert("About Us: This is a placeholder for the About Us section.");
+        };
+
+        document.getElementById('contactBtn').onclick = function() {
+            alert("Contact Us: This is a placeholder for the Contact Us section.");
+        };
+
+        document.getElementById('roadmapBtn').onclick = function() {
+            alert("Roadmap: This is a placeholder for the Roadmap section.");
+        };
+        // Existing JavaScript code...
+
+    // Handle footer button clicks
+    document.getElementById('footerAboutBtn').onclick = function() {
+        alert("About Us: This is a placeholder for the About Us section.");
+    };
+
+    document.getElementById('footerContactBtn').onclick = function() {
+        alert("Contact Us: This is a placeholder for the Contact Us section.");
+    };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login - DoubtNLearn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1b1b1b; /* Darker background */
+            color: white;
+        }
+
+        header {
+            background-color: rgb(3, 3, 3);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #be6525;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            color: #be6525;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            color: #ffffff; /* Change color on hover */
+        }
+
+        .login-button {
+            background-color: #333333; /* Dark button background */
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #444444; /* Lighter shade on hover */
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #2c2c2c;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 400px; /* Set a width */
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            text-align: center;
+        }
+
+        /* Login form styles */
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch; /* Make inputs stretch to full width */
+            width: 100%;
+            padding: 10px;
+        }
+
+        .login-form input, .login-form select {
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px; /* More padding for a better look */
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #3a3a3a; /* Darker input background */
+            color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .login-form input:focus, .login-form select:focus {
+            border-color: #bc591c; /* Highlight on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        .login-form button {
+            background-color: #bc591c;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            padding: 15px; /* Adjust padding */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .login-form button:hover {
+            background-color: #be6525; /* Lighter shade on hover */
+        }
+
+        .not-in-college {
+            margin: 10px 0; /* Spacing above and below */
+            display: flex;
+            align-items: center; /* Align checkbox and label */
+        }
+
+        .not-in-college input {
+            margin-right: 10px; /* Space between checkbox and label */
+        }
+
+        footer {
+            background-color: rgb(3, 3, 3);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .signup-link {
+            margin-top: 10px;
+            color: #bc591c;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">DoubtNLearn</div>
+    <div>
+        <button class="nav-button" id="roadmapBtn">Roadmap</button>
+        <button class="nav-button" id="askDoubtBtn">Ask a Doubt</button>
+        <button class="nav-button" id="bookSessionBtn">Book a Session</button>
+    </div>
+    <button class="login-button" id="loginBtn">Login</button>
+</header>
+
+<div class="modal" id="loginModal">
+    <div class="modal-content">
+        <span class="close" id="closeModal">&times;</span>
+        <h2>Login</h2>
+        <form class="login-form" id="userLoginForm">
+            <input type="text" placeholder="Name" required>
+            <input type="tel" placeholder="Phone No." required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <select required>
+                <option value="" disabled selected>Interested Domain</option>
+                <option value="front-end">Front-end Development</option>
+                <option value="back-end">Back-end Development</option>
+                <option value="full-stack">Full Stack Development</option>
+                <option value="data-science">Data Science</option>
+                <option value="other">Other</option>
+            </select>
+            <select id="collegeYear" required>
+                <option value="" disabled selected>College Year</option>
+                <option value="first-year">1st Year</option>
+                <option value="second-year">2nd Year</option>
+                <option value="third-year">3rd Year</option>
+                <option value="final-year">Final Year</option>
+            </select>
+            <div class="not-in-college">
+                <input type="checkbox" id="notInCollegeCheckbox">
+                <label for="notInCollegeCheckbox">Not in College</label>
+            </div>
+            <input type="text" id="specify" class="not-in-college" placeholder="Please specify" style="display: none;" />
+            <button type="submit" class="login-button">Login</button>
+            <div class="signup-link" onclick="signup()">Don’t have an account? Signup</div>
+        </form>
+    </div>
+</div>
+
+<main>
+    <h1>Welcome to DoubtNLearn</h1>
+</main>
+
+<footer>
+    <p>&copy; 2024 DoubtNLearn. All rights reserved.</p>
+    <button class="nav-button" id="footerAboutBtn">About Us</button>
+    <button class="nav-button" id="footerContactBtn">Contact Us</button>
+</footer>
+
+<script>
+    // Get modal element
+    var modal = document.getElementById("loginModal");
+    
+    // Get button that opens the modal
+    var btn = document.getElementById("loginBtn");
+    
+    // Get the <span> element that closes the modal
+    var span = document.getElementById("closeModal");
+    
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "flex"; // Show modal with flex
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    // Handle "Not in College" checkbox
+    document.getElementById('notInCollegeCheckbox').addEventListener('change', function() {
+        var specifyInput = document.getElementById('specify');
+        specifyInput.style.display = this.checked ? 'block' : 'none';
+    });
+
+    // Placeholder functions for demo
+    function signup() {
+        alert("Redirecting to signup page...");
+    }
+
+    // Handle form submission
+    document.getElementById('userLoginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert("Login successful!"); // Replace with actual login logic
+    });
+</script>
+
+</body>
+</html>
