@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Panelist Signup Form</title>
+   <link rel="stylesheet" href="pstyle.css">
+   <script src="pscript.js"></script>
+</head>
+<body>
+
+<header>
+    <a href="home.html" style="text-decoration: none;"><div class="logo">DoubtNLearn</div></a>
+    <div>
+        <button class="nav-button" id="roadmapBtn">Roadmap</button>
+        <button class="nav-button" id="askDoubtBtn">Ask a Doubt</button>
+        <button class="nav-button" id="bookSessionBtn">Book a Session</button>
+    </div>
+    <button class="login-button" id="loginBtn">Login</button>
+</header>
+
+<div class="container">
+    <!-- Panelist LOGIN Form -->
+    <form id="panelistSignupForm" class="active">
+        <h2>Panelist Login</h2>
+        <div class="form-group">
+            <label for="panelistEmail">Email</label>
+            <input type="email" id="panelistEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="panelistPassword">Password</label>
+            <input type="password" id="panelistPassword" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <label for="panelistid">Panelist ID</label>
+            <input type="text" id="panelistid" placeholder="Enter your panelist ID" required>
+        </div>
+        <div class="buttons">
+            <button type="button" onclick="submitPanelistlogin()">Login</button>
+        </div>
+        <div class="toggle-link" onclick="toggleForm()">Want to become a Panelist? Apply</div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 DoubtNLearn. All Rights Reserved.</p>
+    <button class="nav-button" id="footerContactBtn">Contact Us</button>
+    <button class="nav-button" id="footerContactBtn">About Us</button>
+</footer>
+<script>
+    function submitPanelistlogin() {
+    const email = document.getElementById('panelistEmail').value;
+    const password = document.getElementById('panelistPassword').value;
+    const panelistCode = document.getElementById('panelistid').value;
+    alert('Signed up as panelist with Email: ' + email + ', Panelist ID: ' + panelistCode);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Application Form</title>
+    <link rel="stylesheet" href="mlogin.css">
+</head>
+<body>
+
+    <header>
+        <a href="home.html" style="text-decoration: none;"><div class="logo">DoubtNLearn</div></a>
+        <div>
+            <button class="nav-button" id="roadmapBtn">Roadmap</button>
+            <button class="nav-button" id="askDoubtBtn">Ask a Doubt</button>
+            <button class="nav-button" id="bookSessionBtn">Book a Session</button>
+        </div>
+        <button class="login-button" id="loginBtn">Login</button>
+    </header>
+    
+    <div class="container">
+        <!-- Login Form -->
+        <form id="loginForm" class="active">
+            <h2>LOGIN FORM</h2>
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="mentorid">Mentor ID</label>
+                <input type="text" id="mentorid" placeholder="Enter your Mentor ID" required>
+            </div>
+            <div class="buttons">
+                <button type="button" onclick="submitLogin()">Login</button>
+            </div>
+            <div class="toggle-link" onclick="toggleForm()">Want to become a mentor? Apply</div>
+        </form>
+    
+        <!-- Mentor Application Form -->
+        <form id="applicationForm">
+            <h2>Mentor Application</h2>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone No</label>
+                <input type="text" id="phone" placeholder="Enter your phone number" required>
+            </div>
+            <div class="form-group">
+                <label for="applicationEmail">Email</label>
+                <input type="email" id="applicationEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="applicationPassword">Password</label>
+                <input type="password" id="applicationPassword" placeholder="Enter your password" required>
+            </div>
+            <div class="form-group">
+                <label for="interestedDomain">Expertise Domain</label>
+                <select id="interestedDomain" onchange="handleDomainChange()" required>
+                    <option value="">Select Domain</option>
+                    <option value="backend">Backend</option>
+                    <option value="dsa">DSA</option>
+                    <option value="frontend">Frontend</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+            <div class="form-group" id="describeDomainGroup">
+                <label for="describeDomain">Describe Domain</label>
+                <input type="text" id="describeDomain" placeholder="Describe your domain">
+            </div>
+            <div class="form-group">
+                <label for="driveFolder">Google Drive Folder (Certificates)</label>
+                <input type="url" id="driveFolder" placeholder="Enter your Google Drive folder link" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Highest Education</label>
+                <select id="education" onchange="handleEducationChange()" required>
+                    <option value="">Select Education</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="mtech">M.Tech</option>
+                    <option value="phd">Ph.D.</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="buttons">
+                <button type="button" onclick="submitapplication()">Apply</button>
+            </div>
+            <div class="toggle-link" onclick="toggleForm()">Already have an account? Login</div>
+        </form>
+    </div>
+    
+    <footer>
+        <p>&copy; 2024 DoubtNLearn. All Rights Reserved.</p>
+        <button class="nav-button" id="footerContactBtn">Contact Us</button>
+        <button class="nav-button" id="footerContactBtn">About Us</button>
+    </footer>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const applicationForm = document.getElementById('applicationForm');
+    const yearGroup = document.getElementById('yearGroup');
+    const describeDomainGroup = document.getElementById('describeDomainGroup');
+
+    function toggleForm() {
+        loginForm.classList.toggle('active');
+        applicationForm.classList.toggle('active');
+    }
+
+    function handleEducationChange() {
+        const education = document.getElementById('education').value;
+        if (education === 'btech') {
+            yearGroup.style.display = 'block';
+        } else {
+            yearGroup.style.display = 'none';
+        }
+    }
+
+    function handleDomainChange() {
+        const interestedDomain = document.getElementById('interestedDomain').value;
+        if (interestedDomain === 'others') {
+            describeDomainGroup.style.display = 'block';
+        } else {
+            describeDomainGroup.style.display = 'none';
+        }
+    }
+
+    function submitLogin() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        alert('Logged in with ' + email);
+    }
+
+    function submitapplication() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('applicationEmail').value;
+        const password = document.getElementById('applicationPassword').value;
+        const interestedDomain = document.getElementById('interestedDomain').value;
+        const describeDomain = interestedDomain === 'others' ? document.getElementById('describeDomain').value : 'N/A';
+        const education = document.getElementById('education').value;
+        const year = education === 'btech' ? document.getElementById('year').value : 'N/A';
+        alert('Appliead up with ' + name + ', Interested Domain: ' + interestedDomain + ', Description: ' + describeDomain + ', Education: ' + education + ', Year: ' + year +'\n WAIT FOR THE UPDATES'
+        );
+    }
+    
+</script>
+
+</body>
+</html>
