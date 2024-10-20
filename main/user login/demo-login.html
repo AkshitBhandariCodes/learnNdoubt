@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Signup Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: rgb(66, 63, 63);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure the body takes full height */
+            padding-top: 100px; /* Space for header */
+            padding-bottom: 50px; /* Space for footer */
+        }
+
+        header {
+            background-color: rgb(3, 3, 3);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #be6525;
+        }
+
+        .nav-button {
+            background-color: transparent;
+            color: #be6525;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .nav-button:hover {
+            color: #ffffff;
+        }
+
+        .login-button {
+            background-color: #333333;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #444444;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #2c2c2c;
+            margin: auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 400px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .container {
+            color: black;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 600px; /* Wider form */
+            transition: transform 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .container form {
+            display: none;
+            width: 100%;
+        }
+
+        .container form.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .buttons button {
+            width: 48%;
+            padding: 10px;
+            background-color: #ff5500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #ff5500;
+        }
+
+        .toggle-link {
+            text-align: center;
+            margin-top: 10px;
+            color: #ff5500;
+            cursor: pointer;
+        }
+
+        .form-group#describeDomainGroup {
+            display: none;
+        }
+
+        footer {
+            background-color: rgb(3, 3, 3);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">DoubtNLearn</div>
+    <div>
+        <button class="nav-button" id="roadmapBtn">Roadmap</button>
+        <button class="nav-button" id="askDoubtBtn">Ask a Doubt</button>
+        <button class="nav-button" id="bookSessionBtn">Book a Session</button>
+    </div>
+    <button class="login-button" id="loginBtn">Login</button>
+</header>
+
+<div class="container">
+    <!-- Login Form -->
+    <form id="loginForm" class="active">
+        <h2>LOGIN FORM</h2>
+        <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+        </div>
+        <div class="buttons">
+            <button type="button" onclick="submitLogin()">Login</button>
+        </div>
+        <div class="toggle-link" onclick="toggleForm()">Don't have an account? Sign up</div>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signupForm">
+        <h2>User Signup</h2>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone No</label>
+            <input type="text" id="phone" placeholder="Enter your phone number" required>
+        </div>
+        <div class="form-group">
+            <label for="signupEmail">Email</label>
+            <input type="email" id="signupEmail" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" placeholder="Enter your password" required>
+        </div>
+        <div class="form-group">
+            <label for="interestedDomain">Interested Domain</label>
+            <select id="interestedDomain" onchange="handleDomainChange()" required>
+                <option value="">Select Domain</option>
+                <option value="backend">Backend</option>
+                <option value="dsa">DSA</option>
+                <option value="frontend">Frontend</option>
+                <option value="others">Others</option>
+            </select>
+        </div>
+        <div class="form-group" id="describeDomainGroup">
+            <label for="describeDomain">Describe Domain</label>
+            <input type="text" id="describeDomain" placeholder="Describe your domain">
+        </div>
+        <div class="form-group">
+            <label for="education">Education</label>
+            <select id="education" onchange="handleEducationChange()" required>
+                <option value="">Select Education</option>
+                <option value="btech">B.Tech</option>
+                <option value="school">School Student</option>
+            </select>
+        </div>
+        <div class="form-group" id="yearGroup" style="display: none;">
+            <label for="year">Year</label>
+            <select id="year">
+                <option value="1">1st Year</option>
+                <option value="2">2nd Year</option>
+                <option value="3">3rd Year</option>
+                <option value="4">4th Year</option>
+            </select>
+        </div>
+        <div class="buttons">
+            <button type="button" onclick="submitSignup()">Signup</button>
+        </div>
+        <div class="toggle-link" onclick="toggleForm()">Already have an account? Login</div>
+    </form>
+</div>
+
+<footer>
+    <p>&copy; 2024 DoubtNLearn. All Rights Reserved.</p>
+    <button class="nav-button" id="footerContactBtn">Contact Us</button>
+    <button class="nav-button" id="footerContactBtn">About Us</button>
+</footer>
+
+<script>
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+    const yearGroup = document.getElementById('yearGroup');
+    const describeDomainGroup = document.getElementById('describeDomainGroup');
+
+    function toggleForm() {
+        loginForm.classList.toggle('active');
+        signupForm.classList.toggle('active');
+    }
+
+    function handleEducationChange() {
+        const education = document.getElementById('education').value;
+        if (education === 'btech') {
+            yearGroup.style.display = 'block';
+        } else {
+            yearGroup.style.display = 'none';
+        }
+    }
+
+    function handleDomainChange() {
+        const interestedDomain = document.getElementById('interestedDomain').value;
+        if (interestedDomain === 'others') {
+            describeDomainGroup.style.display = 'block';
+        } else {
+            describeDomainGroup.style.display = 'none';
+        }
+    }
+
+    function submitLogin() {
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+        alert('Logged in with ' + email);
+    }
+
+    function submitSignup() {
+        const name = document.getElementById('name').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        const interestedDomain = document.getElementById('interestedDomain').value;
+        const describeDomain = interestedDomain === 'others' ? document.getElementById('describeDomain').value : 'N/A';
+        const education = document.getElementById('education').value;
+        const year = education === 'btech' ? document.getElementById('year').value : 'N/A';
+        alert('Signed up with ' + name + ', Interested Domain: ' + interestedDomain + ', Description: ' + describeDomain + ', Education: ' + education + ', Year: ' + year);
+    }
+</script>
+
+</body>
+</html>
