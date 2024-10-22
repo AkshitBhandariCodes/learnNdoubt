@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoubtNLearn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #121212; 
+    color: white;
+}
+
+header {
+    background-color: #000000;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #be6525;
+}
+
+/* Header navigation buttons */
+.nav-button {
+    background-color: transparent;
+    color: #be6525;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-button:hover {
+    color: white;
+}
+
+.login-button {
+    background-color: #333333; 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #434343; 
+}
+
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.8); 
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #030303;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; 
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+}
+
+
+.slider {
+    position: relative;
+    width: 100vw;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-top: -150px;
+    padding: 0px;
+}
+
+
+.slides {
+    display: flex;
+    width: 500%;
+    height: 100%;
+    animation: slide 12s cubic-bezier(0.35, 1, 0.5, 1) infinite; 
+}
+
+.slide {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: #fff;
+}
+
+
+.slide:nth-child(1) { background-color: #0044cc;}
+.slide:nth-child(2) { background-color: #ff5722; }
+.slide:nth-child(3) { background-color: #8bc34a; }
+.slide:nth-child(4) { background-color: #673ab7; }
+.slide:nth-child(5) { background-color: #009688; }
+
+
+@keyframes slide {
+    0% { margin-left: 0%; }
+    20% { margin-left: 0%; }
+    25% { margin-left: -100%; }
+    45% { margin-left: -100%; }
+    50% { margin-left: -200%; }
+    70% { margin-left: -200%; }
+    75% { margin-left: -300%; }
+    95% { margin-left: -300%; }
+    100% { margin-left: -400%; }
+}
+
+
+.login-option {
+    background-color: #bc591c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    width: 100%; 
+}
+
+.login-option:hover {
+    background-color: black;
+}
+.features-odd{
+    width: 100vw;
+    max-width: 3148px;
+    height: 400px;
+    overflow: hidden;
+    margin-top: -150px;
+    padding: 0px;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin-bottom: 155px;
+    background-color: black;
+    
+}
+
+.features h2{
+    color: rgb(255, 255, 254);
+    
+}
+.features p{
+    color: #bc591c;
+}
+.feature-content-odd-left{
+    width: 45vw;
+    
+    
+    
+}
+.feature-content-odd-right{
+    width: 45vw;
+    display: flex;
+    justify-content: center;
+    
+}
+.feature-content-even-left{
+    width: 45vw;
+    display: flex;
+    justify-content: center;
+    
+    
+    
+}
+.feature-content-even-right{
+    width: 45vw;
+    
+    
+}
+
+.features-even{
+    width: 100vw;
+    height: 400px;
+    overflow: hidden;
+    margin-top: -150px;
+    padding: 0px;
+    background-color: black;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin-bottom: 155px;
+
+}
+
+.three-card{
+    width: 100vw;
+    margin-top: -150px;
+    padding: 0px;
+    background-color:#131314;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 155px;
+    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
+
+}
+
+.three-card p{
+    color: #ffffff;
+}
+.card{
+    width: 32%; /* Adjust width to prevent overflow on smaller screens */
+    margin: 10px;
+    padding: 10px;
+    background-color: #1c1e26; /* Optional: Add a background to each card for better visual separation */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.card img {
+    max-width: 100%; /* Make sure images are responsive */
+    height: auto;
+    margin-bottom: 20px;
+}
+
+
+.button {
+appearance: none;
+background-color: transparent;
+border: 2px solid #d25909;
+border-radius: 15px;
+box-sizing: border-box;
+color: #c6651a;
+cursor: pointer;
+display: inline-block;
+font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+font-size: 16px;
+font-weight: 600;
+line-height: normal;
+margin: 0;
+min-height: 60px;
+min-width: 0;
+outline: none;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+user-select: none;
+-webkit-user-select: none;
+touch-action: manipulation;
+width: 30%;
+will-change: transform;
+margin-top: 20px;
+    width: 80%; /* Adjust button width */
+
+}
+@media (max-width: 768px) {
+    .three-card {
+        flex-direction: column; /* Stack the cards vertically on smaller screens */
+        align-items: center;
+    }
+
+    .card {
+        width: 90%; /* Make cards full width on smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
+.button:disabled {
+pointer-events: none;
+}
+
+.button:hover {
+color: #fff;
+background-color: #1A1A1A;
+box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+transform: translateY(-2px);
+}
+
+.button:active {
+box-shadow: none;
+transform: translateY(0);
+}
+
+footer{
+background-color: rgb(3, 3, 3); 
+color: white; 
+padding: 15px; 
+text-align: center;
+}
+    </style>
+
+    <header>
+        <a href="home.html" style="text-decoration: none;"><div class="logo">DoubtNLearn</div></a>
+        <div>
+            <button class="nav-button" id="roadmapBtn">Roadmap</button>
+            <button class="nav-button" id="roadmapBtn">Ask a Doubt</button>
+            <button class="nav-button" id="roadmapBtn">Book a Session</button>
+        </div>
+        <button class="login-button" id="loginBtn">Login</button>
+    </header>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Login as:</h2>
+            <a href="user-login.html"><button class="login-option">User</button></a>
+            <a href="mentor-login.html"><button class="login-option">Mentor</button></a>
+            <a href="panelist-login.html"><button class="login-option">Panelist</button></a>
+        </div>
+    </div>
+
+    <main>
+        <div class="slider">
+            <div class="slides">
+                <div class="slide">Welcome to DoubtNLearn</div>
+                <div class="slide">Empower Your Learning</div>
+                <div class="slide">Connect with Mentors</div>
+                <div class="slide">Get Expert Guidance</div>
+                <div class="slide">Get Your Doubt Resolved</div>
+            </div>
+            
+        </div>
+    </main>
+    <div class="three-card">
+        <div class="card">
+            <h2>Backend Development</h2>
+            <img src="https://img.freepik.com/free-vector/back-end-typographic-header-software-development-process-website-interface-design-improvement-programming-coding-it-profession-isolated-flat-vector-illustration_613284-210.jpg?w=1380&t=st=1729520258~exp=1729520858~hmac=9c549418281e91c920b860afd8bbcef75c4de76b8149ac988fda6d6f1d3a1b6f" alt="" height="100px" width="">
+            <p>Backend development involves creating the server-side logic, databases, and APIs that power web and mobile applications. It focuses on ensuring data flow, security, and performance, connecting front-end interfaces with databases, and managing application logic. Common languages include Python, Java, Node.js, and frameworks like Django or Express.</p>
+            <a class="button" href="https://drive.google.com/file/d/1rS3DBmmPAzwn3uSYKV7eU7bknLDPXGE5/view?usp=sharing" target="_blank">Download Roadmap</a>
+            <button class="button">Video Tutorial</button>
+            <button class="button">Live Explanation</button>
+        </div>
+        <div class="card">
+            <h2>Frontend Development</h2>
+            <img src="frontend.png" alt="" height="100px" width="">
+            <p>Frontend development involves creating the user-facing part of a website. It focuses on designing and implementing interfaces using HTML, CSS, and JavaScript. Frontend developers ensure a responsive, interactive, and visually appealing user experience, while optimizing performance across various devices and browsers. They collaborate with backend developers for functionality.​</p>
+            <a class="button" href="https://drive.google.com/file/d/14Pq46eub1DAVnWI3Y9Nkgj3cybVRgytT/view?usp=sharing" target="_blank">Download Roadmap</a>
+            <button class="button">Video Tutorial</button>
+            <button class="button">Live Explanation</button>
+        </div>
+        <div class="card">
+            <h2>DSA </h2>
+            <img src="dsa.png" alt="" height="100px">
+            <p>DSA (Data Structures and Algorithms) is a fundamental concept in computer science that involves organizing and managing data (data structures) and designing efficient procedures (algorithms) to manipulate and solve problems. Mastery of DSA helps optimize code performance, reduce complexity, and enhance problem-solving skills in software development. ​</p>
+            <a class="button" href="https://drive.google.com/file/d/1YlAXEZaXAoAYEs_5Ap5zL0DFaSRhDnYe/view?usp=sharing" target="_blank">Download Roadmap</a>
+            <button class="button">Video Tutorial</button>
+            <button class="button">Live Explanation</button>
+        </div>
+
+    </div>
+    <footer>
+            <p>&copy; 2024 DoubtNLearn. All rights reserved.</p>
+            <button class="nav-button" id="footerAboutBtn">About Us</button>
+            <button class="nav-button" id="footerContactBtn">Contact Us</button>
+        </div>
+    </footer>
+    <script>
+         // Get modal element
+ var modal = document.getElementById("loginModal");
+        
+        // Get button that opens the modal
+        var btn = document.getElementById("loginBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementById("closeModal");
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+            modal.style.display = "flex"; // Show modal with flex
+        }
+       
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+       
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+       
+        // Handle login option button clicks (You can add your login functionality here)
+        const loginOptions = document.querySelectorAll('.login-option');
+        loginOptions.forEach(option => {
+            option.addEventListener('click', function() {
+                // Add functionality for each login option here
+                alert(`You selected: ${this.textContent}`);
+                modal.style.display = "none"; // Close modal after selection
+            });
+        });
+       
+        // Handle header button clicks (You can add functionality here)
+        document.getElementById('aboutBtn').onclick = function() {
+            alert("About Us: This is a placeholder for the About Us section.");
+        };
+       
+        document.getElementById('contactBtn').onclick = function() {
+            alert("Contact Us: This is a placeholder for the Contact Us section.");
+        };
+       
+        document.getElementById('roadmapBtn').onclick = function() {
+            alert("Roadmap: This is a placeholder for the Roadmap section.");
+        };
+        // Existing JavaScript code...
+       
+       // Handle footer button clicks
+       document.getElementById('footerAboutBtn').onclick = function() {
+        alert("About Us: This is a placeholder for the About Us section.");
+       };
+       
+       document.getElementById('footerContactBtn').onclick = function() {
+        alert("Contact Us: This is a placeholder for the Contact Us section.");
+       };
+    </script>
+</body>
+</html>
