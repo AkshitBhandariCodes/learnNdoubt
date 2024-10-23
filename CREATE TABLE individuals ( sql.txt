@@ -1,6 +1,0 @@
-CREATE TABLE individuals (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    generated_id VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL
-);

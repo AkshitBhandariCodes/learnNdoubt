@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Doubt</title>
+    <link rel="stylesheet" href="/public/styles.css">
+</head>
+<body>
+    <header>
+    <a href="home.html" style="text-decoration: none;"><div class="logo">DoubtNLearn</div></a>
+    <div>
+        <button class="nav-button" id="roadmapBtn">Roadmap</button>
+        <button class="nav-button" id="askDoubtBtn">Ask a Doubt</button>
+        <button class="nav-button" id="bookSessionBtn">Book a Session</button>
+    </div>
+    <button class="login-button" id="loginBtn">Login</button>
+</header>
+
+<div class="container">
+    <h1>Ask a Doubt</h1>
+    <form id="doubtForm" action="/submit-doubt" method="POST" enctype="multipart/form-data">
+        <label for="doubt">Enter your doubt:</label><br>
+        <textarea id="doubt" name="doubt" rows="5" cols="30" required></textarea><br><br>
+
+        <label for="image">Upload supporting image (optional):</label><br>
+        <input type="file" id="image" name="image"><br><br>
+
+        <button type="submit">Submit Doubt</button>
+    </form>
+</div>
+    <footer>
+        <p>&copy; 2024 DoubtNLearn. All Rights Reserved.</p>
+        <button class="nav-button" id="footerContactBtn">Contact Us</button>
+        <button class="nav-button" id="footerContactBtn">About Us</button>
+    </footer>
+
+    <style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: rgb(66,63,63);
+        color:white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh; /* Ensure the body takes full height */
+        padding-top:100px;  /* Space for header */
+        padding-bottom:50px; /*Space for Footer */
+    }
+    
+    header {
+        background-color: rgb(3, 3, 3);
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    header div{
+        display: flex;
+        flex-direction: row;
+    
+    }
+    
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        width: 100%;
+        margin-bottom: 93px;
+    }
+    
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #be6525;
+    }
+    
+    .nav-button {
+        background-color: transparent;
+        color: #be6525;
+        border: none;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+    
+    .nav-button:hover {
+        color: #ffffff;
+    }
+    
+    .login-button {
+        background-color: #333333;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width:5%
+    }
+    
+    .login-button:hover {
+        background-color: #444444;
+    }
+    
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    
+    .buttons button {
+        width: 48%;
+        padding: 10px;
+        background-color: #ff5500;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .buttons button:hover {
+        background-color: #ff5500;
+    }
+    
+    .toggle-link {
+        text-align: center;
+        margin-top: 10px;
+        color: #ff5500;
+        cursor: pointer;
+    }
+    
+    
+    
+    h1 {
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #555;
+    }
+    
+    input, select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        background-color: #4cae4c;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    #responseMessage {
+        margin-top: 15px;
+        font-size: 14px;
+        color: #d9534f;
+    }
+    
+    footer {
+        background-color: rgb(3, 3, 3);
+        color: white;
+        padding: 15px;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000;
+    }   
+    </style>
+</body>
+</html>
